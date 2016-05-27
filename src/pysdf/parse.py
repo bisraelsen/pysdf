@@ -17,7 +17,7 @@ if 'GAZEBO_MODEL_PATH' in os.environ:
   model_path_env = os.environ['GAZEBO_MODEL_PATH'].split(':');
   models_paths = models_paths + model_path_env
 
-catkin_ws_path = os.path.expanduser('~') + '/catkin_ws/src/'
+catkin_ws_path = os.path.expanduser('~') + '/.gazebo/models/polaris_ranger_xp900/'
 supported_sdf_versions = [1.4, 1.5, 1.6]
 
 catkin_ws_path_exists = os.path.exists(catkin_ws_path)
@@ -120,7 +120,7 @@ def homogeneous_times_vector(homogeneous, vector):
   vector_as_hom = identity_matrix()
   vector_as_hom[:3,3] = vector.T
   res = numpy.dot(homogeneous, vector_as_hom)
-  return res[:3,3].T 
+  return res[:3,3].T
 
 
 
@@ -261,7 +261,7 @@ class Model(SpatialEntity):
 
   def __repr__(self):
     return ''.join((
-      'Model(\n', 
+      'Model(\n',
       '  %s\n' % indent(super(Model, self).__repr__(), 2),
       '  version: %s\n' % self.version,
       '  root_link: %s\n' % self.root_link.name if self.root_link else '',
@@ -531,7 +531,7 @@ class Link(SpatialEntity):
 
   def get_full_name(self):
     return self.parent_model.get_full_name() + '::' + self.name
-    
+
 
 
 
